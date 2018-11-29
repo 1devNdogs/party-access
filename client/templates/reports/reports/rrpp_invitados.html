@@ -1,0 +1,25 @@
+<template name="rrpp_invitados">
+    <div class="ui form segment">
+        <div class="two fields">
+            <div class="field">
+                <h4 class="ui horizontal divider header">
+            RRPP Invitaciones x Evento
+          </h4> {{>chartInvitadosRp}}
+            </div>
+            <div class="field">
+                <h4 class="ui horizontal divider header">
+            RRPP Asitentes x Evento
+          </h4> {{>chartCaptacionRp}}
+            </div>
+        </div>
+
+    </div>
+</template>
+
+<template name="chartInvitadosRp">
+    <div id="chartInvitadosRp" style="min-width: 310px; height: 400px;"></div>
+</template>
+<template name="chartCaptacionRp">
+    <div id="chartCaptacionRp" style="min-width: 310px; height: 400px;"></div>
+
+</template>

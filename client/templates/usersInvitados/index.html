@@ -1,0 +1,56 @@
+<template name="user_manager_invitados">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <div class="ui left icon input floatRight">
+              <input type="text" id="search" placeholder="Buscar ...">
+              <i class="users icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <table class="ui table">
+              <thead>
+                <tr>
+                  <th id="entradasSort">
+                    <div class="ui mini blue button">
+                      Entradas
+                    </div>
+                  </th>
+                  <th>
+                    Rol</th>
+                  <th>
+                    Nombre</th>
+                  <th>
+                    Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each users}}
+                <tr>
+                  <td>
+                    <div class="ui label">
+                      {{profile.totalEntradas}}
+                    </div>
+                  </td>
+                  <td>{{profile.userType}}</td>
+                  <td>{{profile.name}}</td>
+                  <td>
+                    <a id="btnRemove" class="ui small red icon button">
+                      <i class="trash icon"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <a class="ui blue fluid button" id="loadMoreInvitados">Load More ...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,61 @@
+<template name="locations">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <div class="ui left aligned grid">
+              <div class="left floated sixteen wide column">
+                <a class="ui green button" href="/insertLocation">
+                  Nuevo Local
+                </a>
+                <div class="ui left icon input floatRight">
+                  <input type="text" id="search" placeholder="Buscar ...">
+                  <i class="users icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <table class="ui table">
+              <thead>
+                <tr>
+                  <th id="entradasSort">
+                    Name</th>
+                  <th>
+                    Address</th>
+                  <th>
+                    Ciudad</th>
+                  <th>
+                    Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each locations}}
+                <tr>
+                  <td>
+                    {{name}}
+                  </td>
+                  <td>{{address}}</td>
+                  <td>{{ciudad.name}}</td>
+                  <td>
+                    <a href="{{pathFor 'updateLocation' locationId=this._id}}" class="ui small green icon button">
+                      <i class="edit icon"></i>
+                    </a>
+                    <a id="btnRemove" class="ui small red icon button">
+                      <i class="trash icon"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <a class="ui blue fluid button" id="loadMoreLocations">Load More ...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

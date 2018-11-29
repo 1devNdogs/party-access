@@ -1,0 +1,80 @@
+#loader {
+  width: 1em;
+  height: 1em;
+  font-size: 5em;
+}
+#loader circle {
+  fill: black;
+}
+.circle-one {
+  animation: slideInLeft 0.5s ease-out infinite;
+}
+.circle-one circle {
+  animation: slideInLeftOpacity 0.5s ease-out infinite;
+}
+.circle-two, .circle-three {
+  animation: slideRightTiny 0.5s linear infinite;
+}
+.circle-four {
+  animation: slideOutRight 0.5s ease-out infinite;
+}
+.circle-four circle {
+  animation: slideOutRightOpacity 0.5s ease-out infinite;
+}
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-10px, 0, 0);
+  }
+  to {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@keyframes slideInLeftOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@keyframes slideOutRightOpacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slideRightTiny {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+table.tableSection {
+  display: table;
+  width: 100%;
+}
+table.tableSection thead, table.tableSection tbody {
+  float: left;
+  width: 100%;
+}
+table.tableSection tbody {
+  overflow: auto;
+  height: 400px;
+}
+table.tableSection tr {
+  width: 100%;
+  display: table;
+  text-align: left;
+}

@@ -1,0 +1,22 @@
+<template name="eventMenu">
+  {{#if (condition currentUser.profile.userType '===' 'admin')}}
+  <div class="three fields">
+    <div class="field">
+      <div class="ui fluid button" id="infoBtn">Informacion
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui fluid button" id="invitadosBtn">Invitados
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui fluid button" id="subEventosBtn">Sub Eventos
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui fluid button" id="statsBtn">Stats
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</template>

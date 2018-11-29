@@ -1,0 +1,135 @@
+<template name="updateLocation">
+  {{#with locationInEdit}}
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="five fields">
+          <div class="field">
+            <label for="name">Nombre *</label>
+            <input type="text" id="name" value="{{name}}" placeholder="Nombre">
+          </div>
+          <div class="field">
+            <label for="rut">Rut </label>
+            <input type="text" id="rut" value="{{rut}}" placeholder="Rut">
+          </div>
+          <div class="field">
+            <label for="rut">Direccion </label>
+            <input type="text" id="address" value="{{address}}" placeholder="Direccion">
+          </div>
+          <div class="field">
+            <label for="regionId">Region *</label>
+            <select id="regionId">
+              {{#each regiones}}
+              <option value="{{_id}}" {{selected ../regionId}}>{{name}}
+              </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="ciudadId">Ciudad </label>
+            <select id="ciudadId">
+              {{#each ciudades}}
+              <option value="{{_id}}" {{selected ../ciudadId}}>{{name}}
+              </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="long">Guardar </label>
+            <button id="btnSave" type="submit" class="ui green button">Guardar</button>
+          </div>
+        </div>
+      </div>
+      <div class="ui left aligned grid">
+        <div class="eight wide column">
+          <div class="ui form segment">
+            <div class="two fields">
+              <div class="field">
+                <label for="floorName">Nombre Piso*</label>
+                <input type="text" id="floorName" placeholder="Nombre">
+              </div>
+              <div class="field">
+                <label for="name">Guardar Nuevo Piso*</label>
+                <button class="ui green button" id="btnSaveFloor">Guardar</button>
+              </div>
+            </div>
+          </div>
+          <table class="ui table">
+            <thead>
+              <tr>
+                <th>
+                  Numero</th>
+                <th>
+                  Nombre</th>
+                <th>
+                  Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each floors}}
+              <tr id="selectFloor" class="{{selectedFloor this._id}}">
+                <td>
+                  {{numero}}
+                </td>
+                <td>{{name}}</td>
+                <td>
+                  <a id="btnRemoveFloor" class="ui small red icon button">
+                    <i class="trash icon"></i>
+                  </a>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="eight wide column">
+          <div class="eight wide column">
+            <div class="ui form segment">
+              <div class="two fields">
+                <div class="field">
+                  <label for="sectionName">Nombre Seccion *</label>
+                  <input type="text" id="sectionName" placeholder="Nombre">
+                </div>
+                <div class="field">
+                  <label>Guardar *</label>
+                  <button class="ui green button" id="btnSaveSection">Guardar</button>
+                </div>
+              </div>
+            </div>
+            <table class="ui table">
+              <thead>
+                <tr>
+                  <th id="entradasSort">
+                    Piso</th>
+                  <th>
+                    Nombre</th>
+                  <th>
+                    Numero</th>
+                  <th>
+                    Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sections}}
+                <tr>
+                  <td>
+                    {{floor.name}}
+                  </td>
+                  <td>{{nombre}}</td>
+                  <td>{{numero}}</td>
+                  <td>
+                    <a id="btnRemoveSection" class="ui small red icon button">
+                      <i class="trash icon"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>

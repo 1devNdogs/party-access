@@ -1,0 +1,65 @@
+<template name="reportsEvents">
+    <div class="ui left aligned grid container">
+        <div class="left floated sixteen wide column">
+            <div class="ui form segment">
+
+                <div class="ui left aligned grid">
+                    <div class="left floated sixteen wide column">
+                        <div class="ui label">
+
+                            <i class="users icon"></i> Total de invitados {{getPublishedCount 'allInvitados'}}
+                        </div>
+                        <div class="ui label">
+                            <i class="man icon"></i> Total de hombres {{getPublishedCount 'allInvitadosHH'}}
+                        </div>
+                        <div class="ui label">
+                            <i class="woman icon"></i> Total de mujeres {{getPublishedCount 'allInvitadosMM'}}
+                        </div>
+                        <div class="ui left icon input floatRight">
+                            <input type="text" id="search" placeholder="Buscar ...">
+                            <i class="users icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui left aligned grid">
+                    <div class="left floated sixteen wide column">
+                        <table class="ui table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Name</th>
+                                    <th>
+                                        Fecha</th>
+                                    <th>
+                                        Total Invitados</th>
+                                    <th>
+                                        Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each events}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{fromNowInput eventDate}}</td>
+                                    <td>
+                                        <div class="ui label">
+                                            <i class="users icon"></i> {{totalInvitados}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a class="ui small green icon button" href="{{pathFor 'reportsEventsStats' eventId=this._id}}">
+                                            <i class="bar chart icon"> </i> Stats
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <a class="ui blue fluid button" id="loadMoreEvents">Load More ...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

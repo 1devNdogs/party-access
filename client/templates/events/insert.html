@@ -1,0 +1,58 @@
+<template name="insertEvent">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+
+        <form id="events_form">
+          <div class="one fields">
+            <div class="field">
+              <div class="ui fluid label">Nuevo Evento</div>
+            </div>
+          </div>
+          <div class="four fields">
+            <div class="field">
+              <label for="eventDate">Fecha *</label>
+              <input type="text" id="eventDate" value="{{fromNowInput getDateNow}}" placeholder="Fecha">
+            </div>
+            <div class="field">
+              <label for="hora">Hora *</label>
+              <input type="text" id="hora" class="timepicker" value="10:30 PM">
+            </div>
+            <div class="field">
+              <label for="eventCloseDate">Fecha *</label>
+              <input type="text" id="eventCloseDate" value="{{fromNowInput getDateNow2}}" placeholder="Fecha Cierre">
+            </div>
+            <div class="field">
+              <label for="horaCierre">Hora Cierre *</label>
+              <input type="text" id="horaCierre" class="timepicker" value="02:30 AM">
+            </div>
+          </div>
+
+          <div class="four fields">
+            <div class="field">
+              <label for="name">Nombre *</label>
+              <input type="text" id="name" value="{{name}}" placeholder="Nombre">
+            </div>
+            <div class="field">
+              <label for="tipoEventoId">Tipo Evento *</label>
+              <select class="ui dropdown" id="tipoEventoId">
+                {{#each tipoEvento}}
+                <option value="{{_id}}">{{name}}
+                </option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="field">
+            </div>
+
+            <div class="field">
+              <label for="locationId">Guardar</label>
+              <a id="btnSave" class="ui positive button">Guardar
+                            </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

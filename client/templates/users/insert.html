@@ -1,0 +1,41 @@
+<template name="insertUser">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="six fields">
+          <div class="field">
+            <label for="email">Email *
+            </label>
+            <input type="text" id="email" value="{{email}}" placeholder="Email" autofocus="true">
+          </div>
+          <div class="field">
+            <label for="password">Password *
+            </label>
+            <input type="password" id="password" placeholder="Password">
+          </div>
+          <div class="field">
+            <label for="password">Password Repeat *
+            </label>
+            <input type="password" id="passwordR" placeholder="Password Repeat">
+          </div>
+          <div class="field">
+            <label for="userType">Rol</label>
+            <select class="ui dropdown" id="userType">
+              <option value="rrpp">rrpp</option>
+              <option value="guardia">guardia</option>
+              <option value="admin">admin</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" value="{{name}}" placeholder="Name">
+          </div>
+          <div class="field">
+            <label for="name">&nbsp;</label>
+            <button id="btnSave" type="submit" class="ui green button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

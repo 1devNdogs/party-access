@@ -1,0 +1,47 @@
+
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+reactive-var            # Reactive variable for tracker
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
+
+standard-minifier-css   # CSS minifier run for production mode
+standard-minifier-js    # JS minifier run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
+check
+session
+aldeed:collection2
+kadira:flow-router
+kadira:blaze-layout
+meteorhacks:subs-manager
+accounts-base
+accounts-password
+sacha:spin
+mizzao:timesync
+momentjs:moment
+255kb:meteor-status
+fortawesome:fontawesome
+aldeed:autoform
+mizzao:autocomplete
+dburles:collection-helpers
+email
+accounts-ui
+reywood:publish-composite
+kevohagan:sweetalert
+maazalik:highcharts
+
+gquemart:meteor-reactive-fullcalendar
+u2622:persistent-session
+meteorhacks:unblock
+tmeasday:publish-counts
+
+chrismbeckett:toastr
+arillo:flow-router-helpers
+philippspo:momentum-flow-router
+semantic:ui
+semantic:ui-dropdown
+flemay:less-autoprefixer
+meteortoys:allthings

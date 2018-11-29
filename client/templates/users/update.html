@@ -1,0 +1,43 @@
+<template name="updateUser">
+  {{#with userInEdit}}
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="six fields">
+          <div class="field">
+            <label for="email">Email *
+            </label>
+            <input type="text" id="email" value="{{emails.[0].address}}" placeholder="Email" autofocus="true">
+          </div>
+          <div class="field">
+            <label for="password">Password *
+            </label>
+            <input type="password" id="password" placeholder="Password">
+          </div>
+          <div class="field">
+            <label for="password">Password Repeat *
+            </label>
+            <input type="password" id="passwordR" placeholder="Password Repeat">
+          </div>
+          <div class="field">
+            <label for="userType">Rol</label>
+            <select class="ui dropdown" id="userType">
+              <option value="rrpp" {{selected profile.userType 'rrpp'}}>rrpp</option>
+              <option value="guardia" {{selected profile.userType 'guardia'}}>guardia</option>
+              <option value="admin" {{selected profile.userType 'admin'}}>admin</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" value="{{profile.name}}" placeholder="Name">
+          </div>
+          <div class="field">
+            <label for="name">&nbsp;</label>
+            <button id="btnSave" type="submit" class="ui green button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>

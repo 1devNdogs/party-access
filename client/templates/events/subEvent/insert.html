@@ -1,0 +1,63 @@
+<template name="subEventosInsert">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        {{>eventMenu }}
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <div class="ui form segment">
+              <div class="four fields">
+                <div class="field">
+                  <label for="tipoSubEventoId">Tipo *</label>
+                  <select id="tipoSubEventoId">
+                    {{#each tiposubevento}}
+                      <option value="{{_id}}" {{selected ../tipoSubEventoId}}>{{name}}
+                      </option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="name">Nombre *</label>
+                  <input type="text" id="name" value="{{name}}" placeholder="Nombre">
+                </div>
+                <div class="field">
+                  <label for="comment">Comentario
+                  </label>
+                  <input type="text" id="comment" value="{{comment}}" placeholder="Comentario">
+                </div>
+                <div class="field">
+                  <label for="reservedBy">ReservedBy *</label>
+                  <input type="text" id="reservedBy" value="{{reservedBy}}" placeholder="ReservedBy">
+                </div>
+                <div class="field">
+                  <label for="floorId">Piso *</label>
+                  <select id="floorId">
+                    {{#each floor}}
+                      <option value="{{_id}}" {{selected ../floorId}}>{{name}}
+                      </option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="sectionId">Seccion *</label>
+                  <select id="sectionId">
+                    {{#each section}}
+                      <option value="{{_id}}" {{selected ../sectionId}}>{{nombre}}
+                      </option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Guardar *</label>
+                  <button id="btnSave" type="submit" class="ui positive button">Submit</button>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

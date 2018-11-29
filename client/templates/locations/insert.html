@@ -1,0 +1,44 @@
+<template name="insertLocation">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="five fields">
+          <div class="field">
+            <label for="name">Nombre *</label>
+            <input type="text" id="name" value="{{name}}" placeholder="Nombre">
+          </div>
+          <div class="field">
+            <label for="rut">Rut </label>
+            <input type="text" id="rut" value="{{rut}}" placeholder="Rut">
+          </div>
+          <div class="field">
+            <label for="rut">Direccion </label>
+            <input type="text" id="address" value="{{address}}" placeholder="Direccion">
+          </div>
+          <div class="field">
+            <label for="regionId">Region *</label>
+            <select id="regionId">
+              {{#each regiones}}
+              <option value="{{_id}}">{{name}}
+              </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="ciudadId">Ciudad </label>
+            <select id="ciudadId">
+              {{#each ciudades}}
+              <option value="{{_id}}">{{name}}
+              </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="long">Guardar </label>
+            <button id="btnSave" type="submit" class="ui green button">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

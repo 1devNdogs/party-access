@@ -1,0 +1,179 @@
+<template name="eventsUpdate">
+  {{#with eventInEdit}}
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        {{>eventMenu }}
+        <div class="five fields">
+          <div class="field">
+            <label for="name">Nombre *</label>
+            <input type="text" id="name" value="{{name}}" placeholder="Nombre">
+          </div>
+          <div class="field">
+            <label for="eventDate">Fecha *</label>
+            <input type="text" id="eventDate" value="{{fromNowInput eventDate}}" placeholder="Fecha" class="form-control">
+          </div>
+          <div class="field">
+            <label for="hora">Hora *</label>
+            <input type="text" id="hora" value="{{hora}}">
+          </div>
+          <div class="field">
+            <label for="eventCloseDate">Fecha *</label>
+            <input type="text" id="eventCloseDate" value="{{fromNowInput eventCloseDate}}" placeholder="Fecha Cierre">
+          </div>
+          <div class="field">
+            <label for="horaCierre">Hora Cierre *</label>
+            <input type="text" id="horaCierre" value="{{horaCierre}}">
+          </div>
+        </div>
+
+        <div class="five fields">
+          <div class="field">
+            <label for="name">Total Invitados *</label>
+
+            <div class="ui button">
+              {{totalInvitados}}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Total Hombres *</label>
+
+            <div class="ui button">{{totalHombres}}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Total Mujeres *</label>
+
+            <div class="ui button">{{totalMujeres}}
+            </div>
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+          </div>
+          <div class="field">
+            <div class="field">
+              <label>&nbsp;</label>
+              {{#if (condition currentUser.profile.userType '===' 'admin')}}
+              <a id="btnSave" class="ui positive button floatRight">Guardar
+              </a>
+              <a id="btnRemoveEvent" class="ui negative button floatRight">Eliminar
+              </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <div class="ui form invite">
+          <div class="two fields">
+            <div class="field">
+              <label for="invitadosarea">
+                <p>Agregar Invitados - Formato: nombre/s y/o apellido/s rut</p>
+              </label>
+              <textarea id="invitadosarea"></textarea>
+            </div>
+            <div class="field">
+              <div class="fields">
+                <div class="field">
+                  <label>&nbsp;</label>
+                  <div class="ui button invitarbtn">Invitar</div>
+                </div>
+                <div class="field">
+                  <label>&nbsp;</label>
+                  <select id="subEvento">
+                    <option value="0">Seleccionar Sub Evento
+                    </option>
+                    {{#each subEventos}}
+                    <option value="{{_id}}">{{name}}
+                    </option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+
+              <div class="ui indicating progress">
+                <div class="bar" style="width: {{importStep}}%;">
+                  <div class="progress">%{{importStep}}</div>
+                </div>
+                <div class="label"></div>
+              </div>
+              <label>Resultado Importacion</label>
+              <div class="ui yellow message salida" id="salida"></div>
+              <label>Ya invitados al evento</label>
+              <div class="ui orange message yainvitados" id="yainvitados"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="left floated eight wide column">
+      <div class="ui form segment invite">
+        <div class="field">
+          <div class="ui label">Entrada Ingreso de Rut Manual-LectoraQR</div>
+        </div>
+
+        <div class="field">
+          <label>Rut Registrar codigo con lector o ingresar manualmente y presionar Enter</label>
+          <input autofocus="autofocus" type="text" value="" id="rutpistola" class="rutpistola">
+        </div>
+        <div class="field">
+          <label>Rut</label>
+          <input type="text" value="" disabled="true" class="rutinvitado">
+
+        </div>
+        <div class="field">&nbsp;
+        </div>
+        <div class="field">
+          <label>Nombre</label>
+          <input type="text" value="" disabled="true" class="nombreinvitado">
+
+        </div>
+
+        <div class="field">
+          <label>Estado</label>
+
+          <div class="ui buttons">
+
+            <div class="ui gray button disabled enlistabtn">En Lista</div>
+            <div class="ui gray button disabled noenlistabtn">No En Lista</div>
+          </div>
+          <label>Sexo</label>
+
+          <div class="ui buttons">
+            <div class="ui button gray disabled hbtn">Hombre</div>
+            <div class="ui button gray disabled mbtn">Mujer</div>
+            <div class="ui button gray disabled picksex">Seleccione Sexo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="left floated eight wide column">
+      <div class="ui form segment">
+        <div class="field">
+          <div class="ui label">Asistentes Por Sexo</div>
+        </div>
+
+        <div class="field">
+          <div class="ui button green uglydiv">
+            U Mode
+          </div>
+        </div>
+
+        <div class="field">
+          {{>adminChartLevel}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {{/with}}
+</template>
+
+<template name="adminChartLevel">
+  <div id="adminChartLevel" style="min-width: 310px; height: 400px;"></div>
+</template>

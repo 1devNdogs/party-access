@@ -1,0 +1,64 @@
+<template name="user_manager">
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <a class="ui green button" href="/insertUser">
+              Nuevo Usuario
+            </a>
+            <div class="ui left icon input floatRight">
+              <input type="text" id="search" placeholder="Buscar ...">
+              <i class="users icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui left aligned grid">
+          <div class="left floated sixteen wide column">
+            <table class="ui table">
+              <thead>
+                <tr>
+                  <th>
+                    Email</th>
+                  <th>
+                    Rol</th>
+                  <th>
+                    Nombre</th>
+                  <th>
+                    Total Invitados</th>
+                  <th>
+                    Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each users}}
+                <tr>
+                  <td>{{emails.[0].address}}</td>
+                  <td>{{profile.userType}}</td>
+                  <td>{{profile.name}}</td>
+                  <td>
+                    <div class="ui label">
+                      <i class="users icon"></i> {{profile.totalInvitados}}
+                    </div>
+                  </td>
+                  <td>
+                    <a href="{{pathFor 'updateUser' userId=_id}}" class="ui small green icon button">
+                      <i class="edit icon"></i>
+                    </a>
+                    <a id="btnRemove" class="ui small red icon button">
+                      <i class="trash icon"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <a class="ui blue fluid button" id="loadMoreUsers">Load More ...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

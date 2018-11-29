@@ -1,0 +1,24 @@
+<head>
+  <title>Event Access</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="/svg/logo.svg">
+</head>
+<template name="appLayout">
+  {{> navbar}}
+    {{#if authInProcess}}
+      {{>loading}}
+    {{else}}
+      {{#if canShow}}
+        {{>Template.dynamic template=content}}
+      {{else}}
+        <br>
+        <div class="ui one column center aligned grid">
+          <div class="ui orange message">No estas autorizado para ver esta pagina
+            <br>Inicia sesion para acceder.</div>
+        </div>
+        {{>login}}
+      {{/if}}
+    {{/if}}
+    {{> meteorStatus}}
+</template>

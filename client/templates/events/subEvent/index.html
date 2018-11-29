@@ -1,0 +1,69 @@
+<template name="subEvents">
+  {{#with eventInEdit}}
+    <div class="ui left aligned grid container">
+      <div class="left floated sixteen wide column">
+        <div class="ui form segment">
+          {{>eventMenu }}
+
+          <div class="ui left aligned grid">
+            <div class="left floated sixteen wide column">
+              <div class="ui left icon input floatRight">
+                <div class="ui fluid button" id="newSubEventBtn">
+                  Nuevo Sub Evento
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui left aligned grid">
+            <div class="left floated sixteen wide column">
+              {{#if isEmpty}}
+                <div class="ui green message">Este Evento no posee Sub Eventos</div>
+              {{else}}
+                <table class="ui table">
+                  <thead>
+                    <tr>
+                      <th>Evento</th>
+                      <th>
+                        Tipo
+                      </th>
+                      <th>Nombre</th>
+                      <th>Comentario</th>
+                      <th>ReservedBy
+                      </th>
+                      <th>Piso</th>
+                      <th>Seccion</th>
+                      <th style="width: 145px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each subEventos}}
+                      <tr>
+                        <td>{{event.name}}</td>
+                        <td>{{tipoSubEvent.name}}</td>
+                        <td>{{name}}</td>
+                        <td>{{comment}}</td>
+                        <td>{{reservedBy}}</td>
+                        <td>{{piso.name}}</td>
+                        <td>{{seccion.nombre}}</td>
+                        <td>
+                          <a id="btnRemove" class="ui small red icon button">
+                            <i class="trash icon"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+                {{#if hasMore}}
+                  <a class="btn btn-default load-more btn-block" href="{{hasMore}}">Load More ...</a>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/with}}
+
+</template>

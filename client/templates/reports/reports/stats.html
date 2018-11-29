@@ -1,0 +1,59 @@
+<template name="reportsEventsStats">
+  {{#with eventInEdit}}
+  <div class="ui left aligned grid container">
+    <div class="left floated sixteen wide column">
+      <div class="ui form segment">
+        <h4 class="ui horizontal divider header">
+          Base Stats
+        </h4>
+        <div class="six fields">
+          <div class="field">
+            <label for="name">Total Invitados *</label>
+            <div class="ui label">
+              <i class="users icon"></i> {{totalInvitados }}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Total Hombres *</label>
+            <div class="ui label">
+              <i class="man icon"></i> {{totalHombres }}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Total Mujeres *</label>
+            <div class="ui label">
+              <i class="woman icon"></i> {{totalMujeres }}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Total Ingresados *</label>
+            <div class="ui green label">
+              <i class="users icon"></i> {{getTotalLength _id }}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Ingresados Hombres *</label>
+            <div class="ui green label">
+              <i class="man icon"></i> {{getTotalLengthHH _id }}
+            </div>
+          </div>
+          <div class="field">
+            <label for="name">Ingresados Mujeres *</label>
+            <div class="ui green label">
+              <i class="woman icon"></i> {{getTotalLengthMM _id }}
+            </div>
+          </div>
+        </div>
+        <h4 class="ui horizontal divider header">
+          Horas de llegada por sexo
+        </h4>
+        <div id="chartHoras" style="min-width: 310px; height: 400px;"></div>
+      {{>rrpp_invitados}}
+
+
+
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>

@@ -1,0 +1,30 @@
+<template name="navbar">
+    <div class="ui inverted menu">
+        {{#if currentUser}}
+        <div class="right menu">
+            <a class="item" href="/eventsCalendar">Eventos</a> {{#if (condition currentUser.profile.userType '===' 'admin')}}
+            <a class="item" href="/reportsEvents">Reportes</a>
+            <a class="item" href="/user_manager_invitados">Invitados   </a>
+            <a class="item" href="/user_manager">Usuarios</a>
+            <a class="item" href="/locations">Locales</a> {{/if}}
+            <div class="item">
+                <div class="ui dropdown localDropdrown">
+                    <div class="default text">Locales</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        {{#each locales}}
+                        <div class="item" data-value="{{_id}}">{{name}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <a class="item" id="logout"> Salir </a>
+        </div>
+        {{else}}
+        <div class="right menu">
+            <a class="item" href="/login">Login</a>
+        </div>
+        {{/if}}
+
+    </div>
+</template>
