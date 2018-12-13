@@ -30,12 +30,14 @@ Meteor.publishComposite('rrppInEvent', function() {
         children: [],
     }
 });
-Meteor.publishComposite('usersAppInvitados', function(search, limit, sort) {
+Meteor.publishComposite('usersAppInvitados', function(search, limit, sort, isBanned) {
     console.log('subscribing some usersAppInvitados');
+    console.log('subscribing some usersAppInvitados ', isBanned);
     return {
         find: function() {
             var filter = new RegExp(search, 'i');
             var users = Meteor.users.find({
+                'profile.isBanned': isBanned,
                 'profile.name': filter,
                 'profile.userType': 'invitado',
                 'profile.active': true

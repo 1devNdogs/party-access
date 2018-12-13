@@ -210,6 +210,7 @@ Template.eventsUpdate.events({
                 var invitado = Meteor.users.findOne({
                     'profile.rut': rutPeople
                 });
+                
                 /**
                  *valida si existe la persona en el sistema
                  */
@@ -226,6 +227,7 @@ Template.eventsUpdate.events({
                         eventId: FlowRouter.current().params.eventId,
                         rut: invitado.profile.rut
                     });
+                   
                     /**
                      *SI ES QUE ESTA INVITADO
                      */
@@ -235,7 +237,7 @@ Template.eventsUpdate.events({
                          */
                         /**Si guardia acivo modo ban*/
                         var isBanned = 0;
-                        if (Session.get('isUglyModeOn')) {
+                        if (Session.get('isUglyModeOn') || invitado.profile.isBanned===1) {
                             /**Invitado baneado*/
                             console.log("baneando user")
                             Meteor.call('banUser', invitado._id)
@@ -244,7 +246,10 @@ Template.eventsUpdate.events({
                             toPickSexDisabled();
                             isBanned = 1;
                         }
-
+                        if(invitado.profile.isBanned===1 || isBanned===1){
+                            isBanned=1;
+                        }
+                        
                         if (isBanned == 1)
                             setStatusInviteNoEnLista(enlistabtn, noenlistabtn)
                         else
@@ -263,6 +268,7 @@ Template.eventsUpdate.events({
                             Meteor.call('asisteAEvento', invitacion._id, doc, function() {})
                         }
                         Meteor.call('updateBan', invitacion._id, {isBanned:isBanned}, function() {})
+                        Meteor.call('banUser', invitado._id)
 
                         if (isBanned == 0) {
                             /** EVALUAR EL SEXO Y SETEAR COMPONENTES*/

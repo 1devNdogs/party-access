@@ -212,7 +212,7 @@ Meteor.methods({
         try {
             Meteor.users.update(userId, {
                 $set: {
-                    'profile.ban': true
+                    'profile.isBanned': 1
                 }
             });
         } catch (ex) {
@@ -293,6 +293,7 @@ Meteor.methods({
                             active: true,
                             name: name,
                             rut: rut,
+                            isBanned: 0,
                             createdBy: creatorUserId,
                             creatorName: creatorName,
                             firstEvent: eventId,

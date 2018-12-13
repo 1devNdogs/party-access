@@ -1,17 +1,30 @@
 Template.user_manager_invitados.onRendered(function() {
   Session.set('searchAllUsersInvitados', '')
   Session.set('limitSerchAllUsersInvitados', 20);
+  $('.checkbox').checkbox({
+    onEnable: function() {
+    Session.set('isBanned', 0)
+    },
+    onChecked: function() {
+    Session.set('isBanned', 1)
+    },
+    onUnchecked: function() {
+    Session.set('isBanned', 0)
+    },
+});
+  Session.set("isBanned", 0)
 });
 
 Template.user_manager_invitados.onCreated(function() {
   Session.setDefault('searchAllUsersInvitados', '')
   Session.setDefault('limitSerchAllUsersInvitados', 20);
+  Session.set("isBanned", 0)
   var self = this;
   self.autorun(function() {
     var limit = Session.get('limitSerchAllUsersInvitados');
     var filter = Session.get('searchAllUsersInvitados');
     var entradasSort = Session.get('entradasSort');
-    subs.subscribe("usersAppInvitados", filter, limit, entradasSort);
+    subs.subscribe("usersAppInvitados", filter, limit, entradasSort, Session.get("isBanned"));
   });
 });
 
@@ -56,6 +69,7 @@ Template.user_manager_invitados.helpers({
     var filter = new RegExp(Session.get('searchAllUsersInvitados'), 'i');
 
     return Meteor.users.find({
+      'profile.isBanned': Session.get("isBanned"),
       'profile.name': filter,
       'profile.userType': 'invitado',
       'profile.active': true
