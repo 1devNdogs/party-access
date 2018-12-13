@@ -30,7 +30,7 @@ Template.reportsEventsStats.onCreated(function() {
     var self = this;
     self.autorun(function() {
         var eventId = FlowRouter.current().params.eventId;
-        subs.subscribe('invitadosEvento', eventId);
+        subs.subscribe('invitadosEvento', eventId, 0);
         subs.subscribe("subEventos", eventId);
     })
 });

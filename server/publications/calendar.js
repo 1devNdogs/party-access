@@ -16,14 +16,16 @@ Meteor.publish('eventsCalendar', function(start, end, localId) {
   }
 
 });
-Meteor.publishComposite('invitadosEvento', function(eventId) {
+Meteor.publishComposite('invitadosEvento', function(eventId, isBanned) {
   console.log("subscribing some InvitadosEvento");
   check(eventId, String);
+  check(isBanned, Number);
   try {
     return {
       find: function() {
         return InvitadosEvento.find({
-          eventId: eventId
+          eventId: eventId,
+          isBanned: isBanned
         });
       },
       children: [{

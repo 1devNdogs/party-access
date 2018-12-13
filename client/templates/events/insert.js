@@ -1,6 +1,10 @@
 Template.insertEvent.onRendered(function() {
   this.$('#eventDate').datepicker();
   this.$('#eventCloseDate').datepicker();
+  this.$('#eventCloseDateInv').datepicker();
+  this.$('#eventDateInv').datepicker();
+  this.$('#eventDateInv').datepicker();
+  this.$('#eventDateInv').datepicker();
   this.$('#tipoEventoId').dropdown();
 });
 Template.insertEvent.helpers({
@@ -57,6 +61,13 @@ _getInsertEventDoc = function(t) {
     hora: t.find('#hora').value,
     eventCloseDate: t.find('#eventCloseDate').value ? new Date(t.find('#eventCloseDate').value) : null,
     horaCierre: t.find('#horaCierre').value,
+
+    eventDateInv: new Date(t.find('#eventDateInv').value +" " +t.find('#horaInv').value),
+    horaInv: t.find('#horaInv').value,
+    eventCloseDateInv: t.find('#eventCloseDateInv').value ? new Date(t.find('#eventCloseDateInv').value) : null,
+    horaCierreInv: t.find('#horaCierreInv').value,
+    maximoInvitados: t.find('#maximoInvitados').value,
+
     creatorId: Meteor.user()._id,
     tipoEventoId: t.find('#tipoEventoId').value,
     estado: 'Abierto',

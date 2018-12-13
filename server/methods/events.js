@@ -95,8 +95,19 @@ Meteor.methods({
             logError(ex);
         }
     },
+    'updateBan': function(inviteId, doc) {
+        try {
+            InvitadosEvento.update(inviteId, {
+                $set: doc
+            });
+        } catch (ex) {
+            logError(ex);
+        }
+    },
     'asisteAEvento': function(inviteId, doc) {
         console.log('rrppUserId' + doc.rrppUserId);
+        console.log('doc' + doc);
+        console.log('doc' + doc);
 
         check(inviteId, String);
         check(doc.rrppUserId, String);
@@ -254,7 +265,12 @@ Meteor.methods({
             var totalInvitados = InvitadosEvento.find({
                 eventId: eventId
             }).count();
-            if (totalInvitados <= 1600) {
+            var maximoInvitados = Events.findOne(eventId).maximoInvitados;
+            console.log("max_ "+maximoInvitados)
+            console.log("totalInvitados "+totalInvitados)
+            console.log(maximoInvitados === 0 || totalInvitados < maximoInvitados)
+            
+            if (maximoInvitados === 0 || totalInvitados < maximoInvitados) {
                 var yainvitados = '';
                 /*Buscar invitado como user*/
                 var people = Meteor.users.findOne({
@@ -340,7 +356,7 @@ Meteor.methods({
                 }
                 return yainvitados;
             } else {
-                return 'Lista llena!, no se pueden invitar mas de 1600 personas un evento';
+                return 'Lista llena!, no se pueden invitar mas de '+maximoInvitados+ ' personas un evento';
             }
 
         } catch (ex) {

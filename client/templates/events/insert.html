@@ -27,11 +27,32 @@
               <input type="text" id="horaCierre" class="timepicker" value="02:30 AM">
             </div>
           </div>
-
+          <div class="four fields">
+            <div class="field">
+              <label for="eventDateInv">Fecha Inicio para Invitados</label>
+              <input type="text" id="eventDateInv" value="{{fromNowInput getDateNow}}" placeholder="Fecha">
+            </div> 
+            <div class="field">
+              <label for="horaInv">Hora Inicio para Invitados</label>
+              <input type="text" id="horaInv" class="timepicker" value="10:30 PM">
+            </div>
+            <div class="field">
+              <label for="eventCloseDateInv">Fecha Final para Invitados</label>
+              <input type="text" id="eventCloseDateInv" value="{{fromNowInput getDateNow2}}" placeholder="Fecha Cierre">
+            </div>
+            <div class="field">
+              <label for="horaCierreInv">Hora Cierre Final para Invitados</label>
+              <input type="text" id="horaCierreInv" class="timepicker" value="02:30 AM">
+            </div>
+          </div>
           <div class="four fields">
             <div class="field">
               <label for="name">Nombre *</label>
               <input type="text" id="name" value="{{name}}" placeholder="Nombre">
+            </div>
+            <div class="field">
+              <label for="maximoInvitados">Maximo de Invitados (Vacio = 0 = Sin limite)</label>
+              <input type="text" id="maximoInvitados" value="{{maximoInvitados}}" placeholder="Maximo de Invitados">
             </div>
             <div class="field">
               <label for="tipoEventoId">Tipo Evento *</label>
@@ -43,12 +64,8 @@
               </select>
             </div>
             <div class="field">
-            </div>
-
-            <div class="field">
               <label for="locationId">Guardar</label>
-              <a id="btnSave" class="ui positive button">Guardar
-                            </a>
+              <a id="btnSave" class="ui positive button">Guardar </a>
             </div>
           </div>
         </form>

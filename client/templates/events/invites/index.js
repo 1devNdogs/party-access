@@ -1,16 +1,38 @@
 Template.invitadosEvents.onRendered(function() {
     Session.set('searchInvites', '')
     Session.set('invitadosEventsLimit', 20);
+    $('.checkbox').checkbox({
+        onEnable: function() {
+        Session.set('isBanned', 0)
+        },
+        onChecked: function() {
+        Session.set('isBanned', 1)
+        },
+        onUnchecked: function() {
+        Session.set('isBanned', 0)
+        },
+    });
+    Session.setDefault('isBanned', 0)
+});
+
+Tracker.autorun(function() {
+    var sessionVal = Session.get("isBanned");
+    if(sessionVal===1){
+        $('.checkbox').checkbox('check')
+    }else{
+        $('.checkbox').checkbox('uncheck')
+    }
 });
 Template.invitadosEvents.onCreated(function() {
 
     Session.setDefault('searchInvites', '')
     Session.setDefault('invitadosEventsLimit', 20);
-
+    Session.setDefault('isBanned', 0)
+    console.log(Session.get("isBanned"))
     var self = this;
     self.autorun(function() {
         var eventId = FlowRouter.current().params.eventId;
-        subs.subscribe("invitadosEvento", eventId);
+        subs.subscribe("invitadosEvento", eventId, Session.get("isBanned"));
     });
 });
 Template.invitadosEvents.events = {
@@ -75,10 +97,10 @@ Template.invitadosEvents.helpers({
         var eventId = FlowRouter.current().params.eventId;
         var limit = Session.get('invitadosEventsLimit');
         var filter = new RegExp(Session.get('searchInvites'), 'i');
-
         if (eventId) return InvitadosEvento.find({
             eventId: eventId,
-            nombre: filter
+            nombre: filter,
+            isBanned: Session.get("isBanned")
         }, {
             limit: limit
         });

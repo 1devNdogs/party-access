@@ -57,8 +57,11 @@ UI.registerHelper('eventInEdit', function() {
 });
 UI.registerHelper('fromNowInput', function(date) {
   try {
+    console.log("date:" + date)
     return moment(date).format('L')
-  } catch (e) {}
+  } catch (e) {
+    console.log("error")
+  }
 });
 UI.registerHelper('condition', function(v1, operator, v2, options) {
   var types = {

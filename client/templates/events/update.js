@@ -9,7 +9,7 @@ Template.eventsUpdate.onCreated(function() {
     var self = this;
     self.autorun(function() {
         var eventId = FlowRouter.current().params.eventId;
-        subs.subscribe('invitadosEvento', eventId);
+        subs.subscribe('invitadosEvento', eventId, 0);
         subs.subscribe("subEventos", eventId);
     })
 })
@@ -17,6 +17,8 @@ Template.eventsUpdate.onCreated(function() {
 Template.eventsUpdate.onRendered(function() {
     this.$('#eventDate').datepicker();
     this.$('#eventCloseDate').datepicker();
+    this.$('#eventDateInv').datepicker();
+    this.$('#eventCloseDateInv').datepicker();
     this.$('.rutpistola').focus();
     this.$('.ui.dropdown').dropdown();
     /**Desactiva el modo feo */
@@ -90,6 +92,7 @@ Template.eventsUpdate.events({
             return true;
         }
         //activado el modo ban entra aca
+        //previo a ingresar un rut revisa si el modo ban esta activado = uglumode o ban mode es lo mismo
         if (e.ctrlKey && key == 32) {
             Session.set('isUglyModeOn', !Session.get('isUglyModeOn'));
             if (Session.get('isUglyModeOn'))
@@ -148,8 +151,27 @@ Template.eventsUpdate.events({
         }
     },
     'keypress .rutpistola': function(e, template) {
+        var openDate = new Date(template.find('#eventDateInv').value +" " +template.find('#horaInv').value);
+        var closeDate = new Date(template.find('#eventCloseDateInv').value +" " +template.find('#horaCierreInv').value);
+
+        if(new Date() < openDate || new Date() > closeDate){
+            swal({
+                title: "Invitaciones cerradas",
+                text: 'Invitaciones cerradas',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirmar",
+                closeOnConfirm: true
+            }, function(){
+                return;
+            });
+            return;
+        }
+
         if ((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode == 77 || e.keyCode == 13 || e.keyCode == 75) {
 
+   
             var nombreinvitado = $('.nombreinvitado');
             var rutinvitado = $('.rutinvitado');
             var enlistabtn = $('.enlistabtn');
@@ -184,6 +206,7 @@ Template.eventsUpdate.events({
                         rutPeople = $.formatRut(rutPeople.substring(0, 8));
                     } else {}
                 }
+                console.log("validando"+ rutPeople)
                 var invitado = Meteor.users.findOne({
                     'profile.rut': rutPeople
                 });
@@ -214,6 +237,7 @@ Template.eventsUpdate.events({
                         var isBanned = 0;
                         if (Session.get('isUglyModeOn')) {
                             /**Invitado baneado*/
+                            console.log("baneando user")
                             Meteor.call('banUser', invitado._id)
                             Session.set('isUglyModeOn', false);
                             $('.uglydiv').removeClass('disabled')
@@ -238,6 +262,7 @@ Template.eventsUpdate.events({
                             };
                             Meteor.call('asisteAEvento', invitacion._id, doc, function() {})
                         }
+                        Meteor.call('updateBan', invitacion._id, {isBanned:isBanned}, function() {})
 
                         if (isBanned == 0) {
                             /** EVALUAR EL SEXO Y SETEAR COMPONENTES*/
@@ -292,9 +317,8 @@ Template.eventsUpdate.events({
         template.find('.yainvitados').innerHTML = '';
         var errorLines = ''
             /**Obtiene todas las lineas a importar en un array*/
-        var enteredText = $('#invitadosarea').val();
-        var arrayOfLines = enteredText.split(/\n/g);
-
+            var enteredText = $('#invitadosarea').val();
+            var arrayOfLines = enteredText.split(/\n/g);
         Session.set('importStep', 0)
             /**Se recorre cada linea del array*/
         for (var i = 0; i < arrayOfLines.length; i++) {
@@ -412,6 +436,11 @@ _getUpdateEventDoc = function(t) {
         hora: t.find('#hora').value,
         eventCloseDate: t.find('#eventCloseDate').value ? new Date(t.find('#eventCloseDate').value) : null,
         horaCierre: t.find('#horaCierre').value,
+        eventDateInv: new Date(t.find('#eventDateInv').value +" " +t.find('#horaInv').value),
+        horaInv: t.find('#horaInv').value,
+        eventCloseDateInv: t.find('#eventCloseDateInv').value ? new Date(t.find('#eventCloseDateInv').value) : null,
+        horaCierreInv: t.find('#horaCierreInv').value,
+        maximoInvitados: t.find('#maximoInvitados').value,
     };
 }
 setStatusInviteEnLista = function(enlistabtn, noenlistabtn) {
